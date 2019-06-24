@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>用户注册</title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="main_content">
+
+    <div class="row justify-content-center mt-5 mb-3">
+        <div class="col-10 h3">用户注册</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form th:object="${form}" th:action="@{/sign-up}" method="post">
+                <input type="hidden" th:field="*{destUrl}" />
+                <div th:class="${#fields.hasErrors('username') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="username" class="col-form-label">用户名</label>
+                    <input type="text" class="form-control" th:field="*{username}" th:errorclass="form-control-danger" required="required" autofocus="autofocus" placeholder="登录用户名，最少4个英文字母、数字或下划线" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('password') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="password" class="col-form-label">密码</label>
+                    <input type="password" class="form-control" th:field="*{password}" th:errorclass="form-control-danger" required="required" placeholder="登录密码，请牢记。" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('name') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="name" class="col-form-label">姓名</label>
+                    <input type="text" class="form-control" th:field="*{name}" th:errorclass="form-control-danger" required="required" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('cell') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="cell" class="col-form-label">手机号码</label>
+                    <input type="tel" class="form-control" th:field="*{cell}" th:errorclass="form-control-danger" required="required" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('cell')}" th:errors="*{cell}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('email') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="email" class="col-form-label">电子邮件</label>
+                    <input type="email" class="form-control" th:field="*{email}" th:errorclass="form-control-danger" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary btn-block">提&nbsp;交</button>
+                    <a class="btn btn-secondary btn-block" href="javascript:window.history.back();">取&nbsp;消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

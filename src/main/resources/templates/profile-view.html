@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>个人信息</title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="main_content">
+
+    <div class="row justify-content-center mt-5 mb-3">
+        <div class="col-10 h3">个人信息</div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">用户名</div>
+        <div class="col-6 text-left" th:text="${currentUser.username}"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">姓名</div>
+        <div class="col-6 text-left" th:text="${currentUser.name}"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">手机号码</div>
+        <div class="col-6 text-left" th:text="${currentUser.cell}"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">电子邮箱</div>
+        <div class="col-6 text-left" th:text="${currentUser.email}"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">当前可用</div>
+        <div class="col-6 text-left" th:text="${currentUser.enabled?'正常':'冻结'}"></div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-4 text-right">修改密码</div>
+        <div class="col-6 text-left">
+            <a th:href="@{/gw/site/users/password}" target="_blank">点击修改</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

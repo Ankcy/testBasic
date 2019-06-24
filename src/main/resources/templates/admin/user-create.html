@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>Create User</title>
+</head>
+<body>
+<div class="container" layout:fragment="main_content">
+
+    <div class="row mt-5">
+        <div class="col-10 h3">Create User</div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <form th:object="${form}" th:action="@{/gw/admin/users/new}" method="post">
+                <div th:class="${#fields.hasErrors('username') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="username" class="col-form-label">Username</label>
+                    <input type="text" class="form-control" th:field="*{username}" th:errorclass="form-control-danger" required="required" autofocus="autofocus" placeholder="4-16字符，[0-9a-zA-Z_]" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('password') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="password" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" th:field="*{password}" th:errorclass="form-control-danger" required="required" placeholder="8-30字符" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('name') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="name" class="col-form-label">Name</label>
+                    <input type="text" class="form-control" th:field="*{name}" th:errorclass="form-control-danger" required="required" placeholder="2-30字符" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('cell') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="cell" class="col-form-label">Cell</label>
+                    <input type="tel" class="form-control" th:field="*{cell}" th:errorclass="form-control-danger" required="required" placeholder="8-16字符" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('cell')}" th:errors="*{cell}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('email') ? 'form-group has-danger' : 'form-group'}">
+                    <label th:for="email" class="col-form-label">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}" th:errorclass="form-control-danger" placeholder="最多30个字符" />
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+                <div th:class="${#fields.hasErrors('role') ? 'form-group has-danger' : 'form-group'}">
+                    <div class="col-form-label">Role</div>
+                    <label class="custom-control custom-radio" th:each="role : ${T(com.sos919.commons.security.Role).values()}">
+                        <input type="radio" class="custom-control-input" th:field="*{role}" th:value="${role}" />
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description" th:text="${role}"></span>
+                    </label>
+                    <div class="form-control-feedback" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <a class="btn btn-secondary btn-block" th:href="@{/gw/admin/users}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

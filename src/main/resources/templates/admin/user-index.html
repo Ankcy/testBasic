@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout">
+<head>
+	<title>Users</title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="main_content">
+
+    <div class="row mt-4">
+        <div class="col-12 h3">Users</div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+            <a class="btn btn-primary" th:href="@{/gw/admin/users/new}">New</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-sm">
+        <thead>
+        <tr>
+            <td>Actions</td>
+            <td>ID</td>
+            <td>Username</td>
+            <td>Name</td>
+            <td>Cell</td>
+            <td>Email</td>
+            <td>Wechat Open ID</td>
+            <td>Role</td>
+            <td>Disabled</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${users}">
+            <td>
+                <a th:href="@{'/gw/admin/users/'+${u.id}}"><i class="fa fa-pencil-square-o"></i></a>
+                <a href="##" title="重置密码" th:onclick="${'restPwd('+u.id+')'}"><i class="fa fa-key"></i></a>
+            </td>
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.name}"></td>
+            <td th:text="${u.cell}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.wxOpenId}"></td>
+            <td th:class="${u.role==T(com.sos919.commons.security.Role).SA?'bg-danger text-white':
+                            u.role==T(com.sos919.commons.security.Role).BA?'bg-warning text-white':''}" th:text="${u.role}"></td>
+            <td th:class="${u.disabled?'bg-inverse text-white':''}" th:text="${u.disabled}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<th:block layout:fragment="page_level_javascript">
+    <script th:inline="javascript">
+        function restPwd(id) {
+
+            if(!confirm("确定要重置密码吗？")){
+                return;
+            }
+
+            $.get('/gw/admin/users/resetpwd/'+id, function(data){
+                if(data.code == 0){
+
+                    alert("密码重置成功，新密码为："+data.data.password+'请尽快更改');
+                }else{
+                    alert("重置失败");
+                }
+            });
+
+
+
+        }
+    </script>
+</th:block>
+
+</body>
+</html>

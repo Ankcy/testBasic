@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>主页</title>
+</head>
+<body>
+<div class="container-fluid p-3" layout:fragment="main_content">
+
+    <ul style="list-style: none;">
+        <li style="float: left;">
+            <div class="col-md-3">
+                <div class="card mx-auto" style="width: 20rem;">
+                    <img class="card-img-top" src="https://image.youjiule.cn/52f792a4-639b-4694-b6d7-bd699295134a" alt="Card image cap" width="100%"/>
+                    <div class="card-block">
+                        <h4 class="card-title">E键呼救系统</h4>
+                        <p class="card-text">楼宇应急响应系统，一键呼救，实时通话，专注楼宇公共安全，让意外不再夺走生命。</p>
+                        <a th:href="@{/gz}" class="btn btn-primary">点击进入</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!--
+        <li style="float: left;">
+            <div class="col-md-3">
+                <div class="card mx-auto" style="width: 20rem;">
+                    <img class="card-img-top" src="https://image.youjiule.cn/7f893fb9-5d54-4ca1-909a-b2799a0926f7?imageView2/2/w/650/h/650" alt="Card image cap" width="100%"/>
+                    <div class="card-block">
+                        <h4 class="card-title">救命地图</h4>
+                        <p class="card-text">让你在危急时刻快速找到附近可以救命的应急设备（如AED），教你即刻掌握基本急救技能!</p>
+                        <a th:href="@{/gz}" class="btn btn-primary">点击进入</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        -->
+    </ul>
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!--/* bootstrap required meta */-->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--/* SEO meta */-->
+    <meta name="keywords" content="第一反应 全民互助急救 救要救 AHA 急救 急救培训 赛事保障 马拉松 楼宇安全 CPR 心肺复苏 心脏骤停 猝死 黄金四分钟 公益 社会企业 B型企业 BCorp" />
+    <meta name="description" content="第一反应是国际领先的急救培训和生命救援机构，致力于发展全民互助急救事业，提高每一中国人的自救互救能力。第一反应是中国首批认证的社会企业，全球第一家获得“B型企业”认证的大陆企业。将与您共同努力，建设社会共享型急救平台，将互救互助发展为中国社会的常态。" />
+    <!--/* page title and site icon */-->
+    <title layout:title-pattern="$DECORATOR_TITLE $CONTENT_TITLE">第一反应&reg;</title>
+    <link rel="shortcut icon" href="/staticsite/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="/staticsite/favicon.ico" type="image/x-icon" />
+    <!--/* library css */-->
+    <link rel="stylesheet" href="/staticlib/bootstrap/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/staticlib/fontawesome/css/font-awesome.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/staticlib/sweetalert/css/sweetalert.css" crossorigin="anonymous" />
+    <!--/* site level custom css */-->
+    <style type="text/css">
+        body, button, input, select, textarea, h1 ,h2, h3, h4, h5, h6{font-family:Microsoft YaHei,'宋体',Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;}
+        body{background:url('https://image.youjiule.cn/368e8b13-5b61-4889-b8ea-18292385ece9');background-repeat:repeat;}
+        .layout-container{background-color:#FFF;padding-left:0;padding-right:0;}
+        .navbar-brand img{height:60px;}
+        .layout-contents{min-height:30rem;}
+        .layout-footer{background:url('https://image.youjiule.cn/884ad625-4316-4670-a884-95a190a61022');background-repeat:repeat;font-size:12px;margin-top:5rem;}
+    </style>
+</head>
+<body>
+
+<div class="container-fluid layout-container">
+
+    <!--/* navbar */-->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <a class="navbar-brand" href="/">
+            <img src="https://image.youjiule.cn/cc9b930f-732b-464b-b700-cf2d2991c57c" />
+        </a>
+    </nav>
+
+    <!--/* main contents */-->
+    <div class="row layout-contents">
+        <div class="col-12">
+            <div layout:fragment="main_content"></div>
+        </div>
+    </div>
+
+    <!--/* footer */-->
+    <div class="row">
+        <div class="col-12">
+            <div class="container-fluid layout-footer">
+                <div class="row py-5">
+                    <div class="col-12 col-md-6 px-4 py-2 text-center">
+                        <img src="https://image.youjiule.cn/a0656b29-d405-4e94-a00f-58fee346cacf" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="https://image.youjiule.cn/beeafa79-d5f2-472d-83c1-6f6810a87718?imageView2/2/w/125/h/125" />
+                    </div>
+                    <div class="col-12 col-md-6 px-4 py-2">
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-phone"></i>&nbsp;4008-919-919</li>
+                            <li><i class="fa fa-envelope"></i>&nbsp;kefu@sos919.com</li>
+                            <li><i class="fa fa-map-marker"></i>&nbsp;上海市黄浦区普育西路105号4号楼503室</li>
+                            <li><i class="fa fa-map-pin"></i>&nbsp;北京市朝阳区朝阳门外吉庆里6号佳汇中心B座806室</li>
+                            <li><i class="fa fa-map-pin"></i>&nbsp;深圳市南山区深南大道9998号万利达大厦2208室</li>
+                            <li>&copy;2016&nbsp;-&nbsp;2017&nbsp;上海救要救信息科技有限公司.All rights reserved.</li>
+                            <li>沪公网安备31010102002598号&nbsp;&nbsp;沪ICP备15032975号</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--/* library js */-->
+<script src="/staticlib/jquery/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/tether/tether-1.4.0.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/sweetalert/js/sweetalert.min.js" crossorigin="anonymous"></script>
+<!--/* page level js */-->
+<th:block layout:fragment="page_level_javascript" th:with="ENV=${@environment.getActiveProfiles()[0]}"></th:block>
+
+</body>
+</html>

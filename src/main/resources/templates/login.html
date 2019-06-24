@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>用户登录</title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="main_content">
+
+    <div class="row justify-content-center mt-5 mb-3">
+        <div class="col-10 h3">用户登录</div>
+    </div>
+
+    <div class="row justify-content-center my-3" th:if="${not #strings.isEmpty(param.error)}">
+        <div class="col-10">
+            <div class="alert alert-danger">用户名或密码不正确</div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form th:action="@{/login}" th:method="post">
+                <div class="form-group">
+                    <label for="username" class="col-form-label">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username" required="required" autofocus="autofocus" placeholder="输入用户名" />
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-form-label">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required="required" placeholder="输入登录密码" />
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    <a class="btn btn-secondary btn-block" href="/signup">注册新用户</a>
+                </div>
+                <div class="mt-3">
+                    <a href="/site/pub/password">忘记密码？</a>
+                </div>
+                <div class="mt-2">
+                    <a href="/site/pub/terms">查看条款和条件</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

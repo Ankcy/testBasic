@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<!--/* bootstrap required meta */-->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!--/* page title and site icon */-->
+	<title layout:title-pattern="$DECORATOR_TITLE $CONTENT_TITLE">第一反应&reg;</title>
+    <link rel="shortcut icon" href="/staticsite/favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="/staticsite/favicon.ico" type="image/x-icon" />
+	<!--/* library css */-->
+	<link rel="stylesheet" href="/staticlib/bootstrap/css/bootstrap.min.css" crossorigin="anonymous" />
+	<link rel="stylesheet" href="/staticlib/fontawesome/css/font-awesome.min.css" crossorigin="anonymous" />
+	<link rel="stylesheet" href="/staticlib/sweetalert/css/sweetalert.css" crossorigin="anonymous" />
+	<!--/* site level custom css */-->
+    <style type="text/css">
+        body, button, input, select, textarea, h1 ,h2, h3, h4, h5, h6{font-family:Microsoft YaHei,'宋体',Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;}
+        .layout-container{background-color:#FFF;padding-left:0;padding-right:0;}
+        .layout-contents{min-height:30rem;}
+    </style>
+</head>
+<body>
+
+<div th:with="ENV=${@environment.getActiveProfiles()[0]}" class="container-fluid layout-container">
+
+	<!--/* navbar */-->
+	<nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#s9nav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+        <span th:class="${ENV=='prod'?'navbar-brand text-danger':'navbar-brand'}"
+              th:text="${'Gateway '+#strings.toUpperCase(ENV)}"></span>
+		<div class="collapse navbar-collapse" id="s9nav" th:with="ctxPath=${#httpServletRequest.getServletPath()}">
+			<ul class="navbar-nav mr-auto">
+                <li th:class="${#strings.contains(ctxPath,'/admin/users')}?'nav-item active':'nav-item'">
+                    <a class="nav-link" th:href="@{/gw/admin/users}">Users</a>
+                </li>
+			</ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="fa fa-lock"></i>
+                        <span th:text="${#httpServletRequest.remoteUser}"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" th:href="@{/password}">Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+		</div>
+	</nav>
+
+	<!--/* main contents */-->
+	<div class="row layout-contents">
+		<div class="col-12">
+			<div layout:fragment="main_content"></div>
+		</div>
+	</div>
+
+</div>
+
+<!--/* library js */-->
+<script src="/staticlib/jquery/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/tether/tether-1.4.0.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/sweetalert/js/sweetalert.min.js" crossorigin="anonymous"></script>
+<script src="/staticlib/underscore/underscore-1.8.3.min.js" crossorigin="anonymous"></script>
+<!--/* page level js */-->
+<th:block layout:fragment="page_level_javascript" th:with="ENV=${@environment.getActiveProfiles()[0]}"></th:block>
+
+</body>
+</html>
